@@ -1,4 +1,9 @@
 #!/bin/bash
 
 pattern=$1
-find . -type f | xargs grep -nH "$pattern"
+directory=$2
+if [ -z "$directory" ]; then
+	directory='.'
+fi
+find "$directry" -type f -print0 | xargs grep -nH "$pattern"
+
