@@ -2,8 +2,13 @@
 
 pattern=$1
 directory=$2
+name=$3
 if [ -z "$directory" ]; then
 	directory='.'
 fi
-find "$directry" -type f -print0 | xargs grep -nH "$pattern"
+
+if [ -z "$name" ]; then
+	name='*'
+fi
+find "$directry" -type f -name "$name"  -print0 | xargs grep -nH "$pattern"
 
